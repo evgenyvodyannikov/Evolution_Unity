@@ -5,7 +5,7 @@ using UnityEngine;
 public class MainController : MonoBehaviour
 {
 
-    public Vector2 area = new Vector2(10f, 10f);
+    public Vector2 area = new Vector2(10f, 4.5f);
 
     public GameObject bacteriumPrefab;
     public GameObject foodPrefab;
@@ -20,7 +20,12 @@ public class MainController : MonoBehaviour
 
     private void Evolution()
     {
-        // Start evolution
+       for (int i = 0; i < 100; i++)
+        {
+            Genome genome = new Genome(64);
+            GameObject b = Instantiate(bacteriumPrefab, new Vector3(Random.Range(-area.x, area.x), Random.Range(-area.y, area.y), 0), Quaternion.identity);
+            b.name = "bacterium";
+        }
     }
 
 

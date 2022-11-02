@@ -20,11 +20,19 @@ public class MainController : MonoBehaviour
 
     private void Evolution()
     {
-       for (int i = 0; i < 100; i++)
+        // spawn food
+         for (int i = 0; i < 250; i++)
+        {
+            GameObject food = Instantiate(foodPrefab, new Vector3(Random.Range(-area.x, area.x), Random.Range(-area.y, area.y), 0.1f), Quaternion.identity);
+            food.name = "food";
+        }
+
+        // spawn bacteria
+       for (int i = 0; i < 50; i++)
         {
             Genome genome = new Genome(64);
-            GameObject b = Instantiate(bacteriumPrefab, new Vector3(Random.Range(-area.x, area.x), Random.Range(-area.y, area.y), 0), Quaternion.identity);
-            b.name = "bacterium";
+            GameObject bacterium = Instantiate(bacteriumPrefab, new Vector3(Random.Range(-area.x, area.x), Random.Range(-area.y, area.y), 0), Quaternion.identity);
+            bacterium.name = "bacterium";
         }
     }
 

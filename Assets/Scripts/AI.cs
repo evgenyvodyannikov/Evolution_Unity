@@ -6,7 +6,7 @@ public class AI : MonoBehaviour
 {
     public static int[] skillsTotal = new int[4];
     public int foodSkill = 0;
-    public int attackSkill = 0;
+    public int attackSkill = 1;
     public int defSkill = 0;
     public float energy = 10;
     public float age = 0;
@@ -166,6 +166,25 @@ public class AI : MonoBehaviour
         {
             Eat(foodSkill);
             Destroy(col.gameObject);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (attackSkill == 0) return;
+        if (collision.gameObject.name == "bacterium")
+        {
+            // рассчитываем урон
+            AI ai = collision.gameObject.GetComponent<AI>();
+            if (ai.age < 1f) return;
+            float damage = Mathf.Max(0f, attackSkill - ai.defSkill);
+            float foodFromBacteria = ai.energy / 1.25f;
+            ai.energy -= damage * 5f;
+            if (ai.energy == 0f)
+            {
+                ai.Kill();
+                Eat(foodFromBacteria);
+            }
         }
     }
 

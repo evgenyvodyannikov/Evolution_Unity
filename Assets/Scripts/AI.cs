@@ -67,7 +67,22 @@ public class AI : MonoBehaviour
             }
         }
 
-        if (energy < 0f)
+        for (int i = 0; i < 4; i++)
+        {
+            if(neighboursCount[i] > 0)
+            {
+                vectors[i] /= neighboursCount[i] * vision;
+                inputs[i] = vectors[i].magnitude;
+            }
+            else
+            {
+                inputs[i] = 0f;
+            }
+        }
+
+        // уменьшаем энергию бактерии
+        energy -= Time.deltaTime / 2f;
+        if(energy < 0f)
         {
             Kill();
         }
@@ -75,10 +90,6 @@ public class AI : MonoBehaviour
 
     public void Kill()
     {
-        for (int i = 0; i < Genome.skillCount; i++)
-        {
-            skillsTotal[genome.skills[i]]--;
-        }
         Destroy(gameObject);
     }
 

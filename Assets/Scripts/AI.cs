@@ -43,7 +43,7 @@ public class AI : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, vision);
 
         // векторы к центрам масс еды, красного, зеленого и синего
-        
+
         for (int i = 0; i < 4; i++)
         {
             neighboursCount[i] = 0;
@@ -71,7 +71,7 @@ public class AI : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            if(neighboursCount[i] > 0)
+            if (neighboursCount[i] > 0)
             {
                 vectors[i] /= neighboursCount[i] * vision;
                 inputs[i] = vectors[i].magnitude;
@@ -79,24 +79,49 @@ public class AI : MonoBehaviour
             else
             {
                 inputs[i] = 0f;
-            }   
+            }
         }
 
         // уменьшаем энергию бактерии
         energy -= Time.deltaTime / 2f;
-        if(energy < 0f)
+        if (energy < 0f)
         {
             Kill();
         }
     }
 
-public void Init(Genome g)
+    public void Init(Genome g)
     {
         genome = g;
         Color col = new Color(1f, 1f, 1f, 1f);
+
         float size = 0.75f;
+        for (int i = 0; i < Genome.skillCount; i++)
+        {
+            skillsTotal[g.skills[i]]++;
+            if (g.skills[i] == 0)
+            {
+                foodSkill++;
+                col.g -= 0.2f;
+            }
+            else if (g.skills[i] == 1)
+            {
+                attackSkill++;
+                col.r -= 0.25f;
+            }
+            else if (g.skills[i] == 2)
+            {
+                defSkill++;
+                col.b -= 0.25f;
+            }
+            else if (g.skills[i] == 3)
+            {
+                size += 0.5f;
+            }
+        }
         transform.localScale = new Vector3(size, size, size);
         gameObject.GetComponent<SpriteRenderer>().color = col;
+
         nn = new NN(inputsCount, 8, 4);
         for (int i = 0; i < inputsCount; i++)
         {

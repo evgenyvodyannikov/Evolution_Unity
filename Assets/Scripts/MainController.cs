@@ -21,14 +21,14 @@ public class MainController : MonoBehaviour
     private void Evolution()
     {
         // spawn food
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 250; i++)
         {
             GameObject food = Instantiate(foodPrefab, new Vector3(Random.Range(-area.x, area.x), Random.Range(-area.y, area.y), 0.1f), Quaternion.identity);
             food.name = "food";
         }
 
         // spawn bacteria
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 20; i++)
         {
             Genome genome = new Genome(64);
             GameObject bacterium = Instantiate(bacteriumPrefab, new Vector3(Random.Range(-area.x, area.x), Random.Range(-area.y, area.y), 0), Quaternion.identity);
@@ -40,7 +40,7 @@ public class MainController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (frame >= 25)
+        if (frame >= 15)
         {
             GameObject food = Instantiate(foodPrefab, new Vector3(Random.Range(-area.x, area.x), Random.Range(-area.y, area.y), 0), Quaternion.identity);
             food.name = "food";

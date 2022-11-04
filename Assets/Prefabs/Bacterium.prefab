@@ -136,9 +136,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caabb8a2b29ad6043b94f1c665f425a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bacteriumPrefab: {fileID: 2285095396350154574}
   foodSkill: 0
   attackSkill: 0
   defSkill: 0
   energy: 10
   age: 0
+  prefab: {fileID: 2285095396350154574}
+  neighboursCount:
+  - 0
+  - 0
+  - 0
+  - 0
+  vectors:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}

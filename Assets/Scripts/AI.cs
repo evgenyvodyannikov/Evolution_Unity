@@ -10,6 +10,7 @@ public class AI : MonoBehaviour
     public int defSkill = 0;
     public float energy = 10;
     public float age = 0;
+    public GameObject prefab;
 
     private NN nn;
 
@@ -155,6 +156,35 @@ public class AI : MonoBehaviour
             {
                 nn.layers[1].weights[i, j] = genome.weights[i + j * 8 + inputsCount * 8];
             }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (foodSkill == 0) return;
+        if (col.gameObject.name == "food")
+        {
+            Eat(foodSkill);
+            Destroy(col.gameObject);
+        }
+    }
+
+    private void Eat(float foodWeight)
+    {
+        energy += foodWeight;
+        // размножение
+        if (energy > 25)
+        {
+            energy *= 0.2f;
+            GameObject bacterium = (GameObject)Object.Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
+            bacterium.transform.position = transform.position;
+            bacterium.name = "bacterium";
+            Genome g = new Genome(genome);
+            // мутация генома
+            g.Mutate(0.5f);
+            AI ai = bacterium.GetComponent<AI>();
+            ai.Init(g);
+            ai.energy = energy * 1.25f;
         }
     }
 

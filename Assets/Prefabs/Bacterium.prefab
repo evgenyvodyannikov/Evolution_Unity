@@ -136,9 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caabb8a2b29ad6043b94f1c665f425a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodSkill: 0
-  attackSkill: 0
-  defSkill: 0
+  foodSkill: 1
+  attackSkill: 1
+  defSkill: 1
   energy: 10
   age: 0
   prefab: {fileID: 2285095396350154574}

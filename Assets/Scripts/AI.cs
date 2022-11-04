@@ -179,7 +179,7 @@ public class AI : MonoBehaviour
             if (ai.age < 1f) return;
             float damage = Mathf.Max(0f, attackSkill - ai.defSkill);
             float foodFromBacteria = ai.energy / 1.25f;
-            float expirience = 1.25f;
+            int expirience = 1;
             ai.energy -= damage * 5f;
             if (ai.energy == 0f)
             {

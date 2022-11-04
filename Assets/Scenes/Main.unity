@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bfde288e7befba4985fa5d1a99c0057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area: {x: 10, y: 4.5}
+  area: {x: 9, y: 4.5}
   bacteriumPrefab: {fileID: 2285095396350154574, guid: cac6a40de09aab44cba067efcf08ccb6, type: 3}
   foodPrefab: {fileID: 768593241845746938, guid: f6caa6b4ecc56b243b3bda2fb22eeef7, type: 3}
 --- !u!1001 &785674375

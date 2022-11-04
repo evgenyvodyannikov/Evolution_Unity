@@ -5,7 +5,7 @@ using UnityEngine;
 public class MainController : MonoBehaviour
 {
 
-    public Vector2 area = new Vector2(10f, 4.5f);
+    public Vector2 area = new Vector2(9f, 4.5f);
 
     public GameObject bacteriumPrefab;
     public GameObject foodPrefab;

@@ -69,6 +69,7 @@ public class AI : MonoBehaviour
             }
         }
 
+        // значения на вход нейросети
         for (int i = 0; i < 4; i++)
         {
             if (neighboursCount[i] > 0)
@@ -81,6 +82,24 @@ public class AI : MonoBehaviour
                 inputs[i] = 0f;
             }
         }
+
+        // значения выхода нейросети
+        float[] outputs = nn.FeedForward(inputs);
+        Vector2 target = new Vector2(0, 0);
+        for (int i = 0; i < 4; i++)
+        {
+            if (neighboursCount[i] > 0)
+            {
+                Vector2 dir = new Vector2(vectors[i].x, vectors[i].y);
+                dir.Normalize();
+                target += dir * outputs[i];
+            }
+        }
+        if (target.magnitude > 1f) target.Normalize();
+        Vector2 velocity = rb.velocity;
+        velocity += target * (0.25f + attackSkill * 0.05f);
+        velocity *= 0.98f;
+        rb.velocity = velocity;
 
         // уменьшаем энергию бактерии
         energy -= Time.deltaTime / 2f;

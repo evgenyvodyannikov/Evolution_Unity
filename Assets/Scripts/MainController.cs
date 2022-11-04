@@ -40,6 +40,11 @@ public class MainController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
+        if (frame % 1 == 0)
+        {
+            GameObject food = Instantiate(foodPrefab, new Vector3(Random.Range(-area.x, area.x), Random.Range(-area.y, area.y), 0), Quaternion.identity);
+            food.name = "food";
+        }
+        frame++;
     }
 }

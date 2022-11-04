@@ -173,9 +173,9 @@ public class AI : MonoBehaviour
     {
         energy += foodWeight;
         // размножение
-        if (energy > 25)
+        if (energy > 100)
         {
-            energy *= 0.2f;
+            energy *= 0.1f;
             GameObject bacterium = (GameObject)Object.Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
             bacterium.transform.position = transform.position;
             bacterium.name = "bacterium";

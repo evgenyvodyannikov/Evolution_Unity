@@ -33,6 +33,7 @@ public class MainController : MonoBehaviour
             Genome genome = new Genome(64);
             GameObject bacterium = Instantiate(bacteriumPrefab, new Vector3(Random.Range(-area.x, area.x), Random.Range(-area.y, area.y), 0), Quaternion.identity);
             bacterium.name = "bacterium";
+            bacterium.GetComponent<AI>().Init(genome);
         }
     }
 

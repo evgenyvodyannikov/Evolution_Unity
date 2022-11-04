@@ -11,6 +11,8 @@ public class AI : MonoBehaviour
     public float energy = 10;
     public float age = 0;
 
+    private NN nn;
+
     // test
     public float[] neighboursCount = new float[4];
     public Vector3[] vectors = new Vector3[4];
@@ -77,7 +79,7 @@ public class AI : MonoBehaviour
             else
             {
                 inputs[i] = 0f;
-            }
+            }   
         }
 
         // уменьшаем энергию бактерии
@@ -85,6 +87,30 @@ public class AI : MonoBehaviour
         if(energy < 0f)
         {
             Kill();
+        }
+    }
+
+public void Init(Genome g)
+    {
+        genome = g;
+        Color col = new Color(1f, 1f, 1f, 1f);
+        float size = 0.75f;
+        transform.localScale = new Vector3(size, size, size);
+        gameObject.GetComponent<SpriteRenderer>().color = col;
+        nn = new NN(inputsCount, 8, 4);
+        for (int i = 0; i < inputsCount; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                nn.layers[0].weights[i, j] = genome.weights[i + j * inputsCount];
+            }
+        }
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                nn.layers[1].weights[i, j] = genome.weights[i + j * 8 + inputsCount * 8];
+            }
         }
     }
 

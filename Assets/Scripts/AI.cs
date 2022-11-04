@@ -115,14 +115,14 @@ public class AI : MonoBehaviour
         genome = g;
         Color col = new Color(1f, 1f, 1f, 1f);
 
-        float size = 0.75f;
+        float size = 0.5f;
         for (int i = 0; i < Genome.skillCount; i++)
         {
             skillsTotal[g.skills[i]]++;
             if (g.skills[i] == 0)
             {
                 foodSkill++;
-                col.g -= 0.2f;
+                col.g -= 0.3f;
             }
             else if (g.skills[i] == 1)
             {
@@ -136,7 +136,7 @@ public class AI : MonoBehaviour
             }
             else if (g.skills[i] == 3)
             {
-                size += 0.5f;
+                size += 0.1f;
             }
         }
         transform.localScale = new Vector3(size, size, size);

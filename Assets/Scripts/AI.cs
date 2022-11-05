@@ -17,10 +17,10 @@ public class AI : MonoBehaviour
     // test
     public float[] neighboursCount = new float[4];
     public Vector3[] vectors = new Vector3[4];
+    public Vector2 target;
+    public Genome genome;
     //
     private int inputsCount = 4;
-    private Genome genome;
-
     private Rigidbody2D rb;
 
     void Start()
@@ -86,7 +86,7 @@ public class AI : MonoBehaviour
 
         // значения выхода нейросети
         float[] outputs = nn.FeedForward(inputs);
-        Vector2 target = new Vector2(0, 0);
+        target = new Vector2(0, 0);
         for (int i = 0; i < 4; i++)
         {
             if (neighboursCount[i] > 0)
@@ -113,7 +113,6 @@ public class AI : MonoBehaviour
     public void Init(Genome g)
     {
         genome = g;
-        Color col = new Color(1f, 1f, 1f, 1f);
 
         float size = 0.5f;
         for (int i = 0; i < Genome.skillCount; i++)
@@ -122,17 +121,17 @@ public class AI : MonoBehaviour
             if (g.skills[i] == 0)
             {
                 foodSkill++;
-                col.g -= 0.3f;
+                genome.color.g -= 0.4f;
             }
             else if (g.skills[i] == 1)
             {
                 attackSkill++;
-                col.r -= 0.25f;
+                genome.color.r -= 0.7f;
             }
             else if (g.skills[i] == 2)
             {
                 defSkill++;
-                col.b -= 0.25f;
+                genome.color.b -= 0.8f;
             }
             else if (g.skills[i] == 3)
             {
@@ -140,7 +139,7 @@ public class AI : MonoBehaviour
             }
         }
         transform.localScale = new Vector3(size, size, size);
-        gameObject.GetComponent<SpriteRenderer>().color = col;
+        gameObject.GetComponent<SpriteRenderer>().color = genome.color;
 
         nn = new NN(inputsCount, 8, 4);
         for (int i = 0; i < inputsCount; i++)

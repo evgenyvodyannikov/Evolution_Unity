@@ -6,7 +6,7 @@ using UnityEngine;
 public class Genome
 {
     public static int skillCount = 5;
-
+    public Color color = new Color(1f, 1f, 1f, 1f);
     public float[] weights;
     public int[] skills;
 
@@ -26,6 +26,7 @@ public class Genome
         Array.Copy(a.weights, 0, weights, 0, a.weights.Length);
         skills = new int[skillCount];
         Array.Copy(a.skills, 0, skills, 0, skillCount);
+        color = a.color;
     }
 
     public void Mutate(float value)
